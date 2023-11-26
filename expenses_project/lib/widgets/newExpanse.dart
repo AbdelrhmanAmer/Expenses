@@ -55,9 +55,9 @@ class _NewExpanseState extends State<NewExpanse> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                        _selectedDate == null
-                            ? "Select Date"
-                            : formatter.format(_selectedDate!),
+                      _selectedDate == null
+                          ? "Select Date"
+                          : formatter.format(_selectedDate!),
                     ),
                     IconButton(
                         onPressed: () async {
@@ -83,12 +83,12 @@ class _NewExpanseState extends State<NewExpanse> {
           Row(
             children: [
               DropdownButton(
-                value: _selectedCategory,
+                  value: _selectedCategory,
                   items: Category.values.map(
-                          (e) => DropdownMenuItem(
-                            value: e,
-                              child: Text(e.name.toUpperCase())
-                          ),
+                        (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e.name.toUpperCase())
+                    ),
                   ).toList(),
                   onChanged: (newCat){
                     if(newCat == null) {
@@ -108,13 +108,26 @@ class _NewExpanseState extends State<NewExpanse> {
               ElevatedButton(
                 onPressed: (){
                   final enteredAmount = double.tryParse(_amountController.text);
-                   final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
-                   if( _titleController.text.trim().isEmpty
-                       || amountIsInvalid
-                       || _selectedDate == null)
-                   {
-                     log('Error');
-                   }
+                  final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+
+                  if( _titleController.text.trim().isEmpty
+                      || amountIsInvalid
+                      || _selectedDate == null)
+                  {
+                    showDialog(
+                        context: context,
+                        builder: ((ctx)=> AlertDialog(
+                          title: const Text("Invalid Data"),
+                          content: const Text("Wrong Input !!"),
+                          actions: [
+                            TextButton(
+                                onPressed:()=>Navigator.pop(ctx),
+                                child: const Text("OK"))
+                          ],
+                        )
+                        )
+                    );
+                  }
                 },
                 child: const Text("Save Expanse"),
               ),
