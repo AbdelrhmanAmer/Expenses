@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import '../models/expanse.dart';
 class NewExpanse extends StatefulWidget {
   const NewExpanse({super.key});
 
@@ -15,6 +15,7 @@ class _NewExpanseState extends State<NewExpanse> {
   final _amountController = TextEditingController();
   final formatter = DateFormat.yMd();
   DateTime? _selectedDate;
+  Category _selectedCategory = Category.Travel;
 
   @override
   void dispose() {
@@ -78,9 +79,27 @@ class _NewExpanseState extends State<NewExpanse> {
               )
             ],
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(height: 20,),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                  items: Category.values.map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                              child: Text(e.name.toUpperCase())
+                          ),
+                  ).toList(),
+                  onChanged: (newCat){
+                    if(newCat == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = newCat;
+                    });
+                  }
+              ),
+              const Spacer(),
               TextButton(
                 // what is the thing that you want to close ? (context)
                   onPressed: ()=>Navigator.pop(context) ,
@@ -88,7 +107,7 @@ class _NewExpanseState extends State<NewExpanse> {
               ),
               ElevatedButton(
                 onPressed: (){
-                  log(_titleController.text);
+                  
                 },
                 child: const Text("Save Expanse"),
               ),
