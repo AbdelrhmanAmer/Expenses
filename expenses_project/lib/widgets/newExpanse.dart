@@ -107,7 +107,14 @@ class _NewExpanseState extends State<NewExpanse> {
               ),
               ElevatedButton(
                 onPressed: (){
-                  
+                  final enteredAmount = double.tryParse(_amountController.text);
+                   final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+                   if( _titleController.text.trim().isEmpty
+                       || amountIsInvalid
+                       || _selectedDate == null)
+                   {
+                     log('Error');
+                   }
                 },
                 child: const Text("Save Expanse"),
               ),
