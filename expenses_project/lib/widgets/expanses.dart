@@ -20,7 +20,21 @@ class _ExpansesState extends State<Expanses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Expanses Home Page"),),
+      appBar: AppBar(
+        title: const Text("Expanses Home Page"),
+        // leading: const Icon(Icons.add), // at beginning
+        actions: [
+          IconButton(onPressed: (){
+            showModalBottomSheet(
+                context: context,
+                builder: (ctx) =>
+                const SizedBox(
+                    width:double.infinity,
+                    height: 300,
+                    child: Text("Data")));
+          },icon: const Icon(Icons.add),),
+        ], // at the end
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
