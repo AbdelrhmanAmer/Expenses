@@ -2,6 +2,7 @@ import 'package:expenses_project/widgets/expanses_list/expanses_list.dart';
 import 'package:flutter/material.dart';
 
 import '../models/expanse.dart';
+import 'newExpanse.dart';
 
 class Expanses extends StatefulWidget {
   const Expanses({super.key});
@@ -24,15 +25,11 @@ class _ExpansesState extends State<Expanses> {
         title: const Text("Expanses Home Page"),
         // leading: const Icon(Icons.add), // at beginning
         actions: [
-          IconButton(onPressed: (){
-            showModalBottomSheet(
-                context: context,
-                builder: (ctx) =>
-                const SizedBox(
-                    width:double.infinity,
-                    height: 300,
-                    child: Text("Data")));
-          },icon: const Icon(Icons.add),),
+          IconButton(
+            onPressed: (){
+              showModalBottomSheet( context: context, builder: (ctx) => const NewExpanse());
+              },
+            icon: const Icon(Icons.add),),
         ], // at the end
       ),
       body: Center(
