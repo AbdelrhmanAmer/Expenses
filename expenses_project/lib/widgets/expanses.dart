@@ -1,3 +1,4 @@
+import 'package:expenses_project/widgets/chart/chart.dart';
 import 'package:expenses_project/widgets/expanses_list/expanses_list.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,8 @@ class _ExpansesState extends State<Expanses> {
       _expanses.remove(expanse);
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +53,7 @@ class _ExpansesState extends State<Expanses> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Chart(expanses: _expanses),
             Expanded(
               child: ExpansesList(
                 expanses: _expanses,
