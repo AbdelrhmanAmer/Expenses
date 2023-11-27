@@ -33,3 +33,23 @@ class Expanse{
     required this.date
   }): id= uuid.v4();
 }
+
+class ExpanseBucket{
+  final Category category;
+  final List<Expanse> expanses;
+
+  ExpanseBucket(this.category, this.expanses);
+
+  ExpanseBucket.forCategory(List<Expanse> allExpanses, this.category)
+      : expanses=allExpanses
+      .where((element) => element.category == category)
+      .toList();
+
+  double get totalExpanses{
+    double sum = 0;
+    for(var expanse in expanses){
+      sum += expanse.amount;
+    }
+    return sum;
+  }
+}
