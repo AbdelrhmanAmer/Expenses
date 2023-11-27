@@ -7,8 +7,9 @@ class ExpansesList extends StatelessWidget {
   const ExpansesList({
         super.key,
         required this.expanses,
+        required this.onRemoveExpanse
     });
-
+  final void Function(Expanse expanse) onRemoveExpanse;
   final List<Expanse> expanses;
 
   @override
@@ -16,8 +17,10 @@ class ExpansesList extends StatelessWidget {
     return ListView.builder(
       itemCount: expanses.length,
         itemBuilder: (ctx, index){
-          return ExpansesItem(
-              expanse: expanses[index],
+          return Dismissible(
+            key: ValueKey(expanses[index]),
+            child: ExpansesItem( expanse: expanses[index], ),
+            onDismissed: (direction)=> onRemoveExpanse(expanses[index]),
           );
         }
     );

@@ -19,10 +19,14 @@ class _ExpansesState extends State<Expanses> {
 
   ];
 
-
   void _addExpanse(Expanse expanse){
     setState(() {
       _expanses.add(expanse);
+    });
+  }
+  void _removeExpanse(Expanse expanse){
+    setState(() {
+      _expanses.remove(expanse);
     });
   }
   @override
@@ -46,10 +50,10 @@ class _ExpansesState extends State<Expanses> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("text1"),
             Expanded(
               child: ExpansesList(
                 expanses: _expanses,
+                onRemoveExpanse: _removeExpanse,
               )
             ),
           ],
