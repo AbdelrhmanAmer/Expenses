@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/expanse.dart';
 class NewExpanse extends StatefulWidget {
-  const NewExpanse({super.key});
+  const NewExpanse(this.onAddExpanse,{super.key});
+
+  final void Function(Expanse expanse) onAddExpanse;
 
   @override
   State<NewExpanse> createState() => _NewExpanseState();
@@ -127,6 +129,15 @@ class _NewExpanseState extends State<NewExpanse> {
                         )
                         )
                     );
+                  }else{
+                    widget.onAddExpanse(
+                      Expanse(
+                          category: _selectedCategory,
+                          title: _titleController.text,
+                          amount: enteredAmount,
+                          date: _selectedDate!),
+                    );
+                    Navigator.pop(context);
                   }
                 },
                 child: const Text("Save Expanse"),

@@ -7,9 +7,9 @@ const uuid = Uuid();
 final dateTime = DateFormat.yMd();
 
 const categoryIcons = {
-  Category.Food: Icons.launch,
+  Category.Food: Icons.lunch_dining_outlined,
   Category.Travel: Icons.flight_takeoff,
-  Category.Leisure: Icons.movie_outlined,
+  Category.Leisure: Icons.video_camera_back_outlined,
   Category.Work: Icons.work_outline
 };
 

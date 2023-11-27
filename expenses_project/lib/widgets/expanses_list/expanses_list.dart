@@ -16,7 +16,9 @@ class ExpansesList extends StatelessWidget {
     return ListView.builder(
       itemCount: expanses.length,
         itemBuilder: (ctx, index){
-          return ExpansesItem(expanse: expanses[index]);
+          return ExpansesItem(
+              expanse: expanses[index],
+          );
         }
     );
   }

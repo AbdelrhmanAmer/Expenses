@@ -18,6 +18,13 @@ class _ExpansesState extends State<Expanses> {
     Expanse(category: Category.Food, title: "Breakfast", amount: 31.3, date: DateTime.now()),
 
   ];
+
+
+  void _addExpanse(Expanse expanse){
+    setState(() {
+      _expanses.add(expanse);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +34,11 @@ class _ExpansesState extends State<Expanses> {
         actions: [
           IconButton(
             onPressed: (){
-              showModalBottomSheet( context: context, builder: (ctx) => const NewExpanse());
-              },
+              showModalBottomSheet(
+                  context: context,
+                  builder: (ctx) => NewExpanse(_addExpanse)
+              );
+            },
             icon: const Icon(Icons.add),),
         ], // at the end
       ),
