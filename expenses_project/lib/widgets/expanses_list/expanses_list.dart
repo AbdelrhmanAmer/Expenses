@@ -18,6 +18,10 @@ class ExpansesList extends StatelessWidget {
       itemCount: expanses.length,
         itemBuilder: (ctx, index){
           return Dismissible(
+            background: Container(
+              color: Theme.of(context).colorScheme.error.withOpacity(.7),
+              margin: Theme.of(context).cardTheme.margin,
+            ),
             key: ValueKey(expanses[index]),
             child: ExpansesItem( expanse: expanses[index], ),
             onDismissed: (direction)=> onRemoveExpanse(expanses[index]),
