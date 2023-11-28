@@ -70,29 +70,15 @@ class _ExpansesState extends State<Expanses> {
           child: width<600? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Chart(expanses: _expanses,),
-
-              const SizedBox(height: 10,),
-              Expanded(
-                  child: ExpansesList(
-                    expanses: _expanses,
-                    onRemoveExpanse: _removeExpanse,
-                  )
-              ),
+              Expanded(child: Chart(expanses: _expanses,)),
+              Expanded( child: mainContent ),
             ],
           )
               : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(child: Chart(expanses: _expanses,)),
-
-              const SizedBox(height: 10,),
-              Expanded(
-                  child: ExpansesList(
-                    expanses: _expanses,
-                    onRemoveExpanse: _removeExpanse,
-                  )
-              ),
+              Expanded( child: mainContent ),
             ],
           )
           ,
