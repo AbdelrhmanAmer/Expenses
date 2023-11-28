@@ -34,14 +34,16 @@ class _ExpansesState extends State<Expanses> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    print('$width');
 
     Widget mainContent = const Center(
       child: Text("No Expenses found. Start adding Some!"),
     );
     if(_expanses.isNotEmpty){
       mainContent = ExpansesList(
-          expanses: _expanses,
-          onRemoveExpanse: _removeExpanse,
+        expanses: _expanses,
+        onRemoveExpanse: _removeExpanse,
       );
     }
 
@@ -63,20 +65,35 @@ class _ExpansesState extends State<Expanses> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Center(
-          child: Column(
+          child: width<600? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Chart(expanses: _expanses,),
 
               const SizedBox(height: 10,),
               Expanded(
-                child: ExpansesList(
-                  expanses: _expanses,
-                  onRemoveExpanse: _removeExpanse,
-                )
+                  child: ExpansesList(
+                    expanses: _expanses,
+                    onRemoveExpanse: _removeExpanse,
+                  )
               ),
             ],
-          ),
+          )
+              : Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: Chart(expanses: _expanses,)),
+
+              const SizedBox(height: 10,),
+              Expanded(
+                  child: ExpansesList(
+                    expanses: _expanses,
+                    onRemoveExpanse: _removeExpanse,
+                  )
+              ),
+            ],
+          )
+          ,
         ),
       ),
     );
