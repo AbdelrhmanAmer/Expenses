@@ -55,6 +55,8 @@ class _ExpansesState extends State<Expanses> {
           IconButton(
             onPressed: (){
               showModalBottomSheet(
+                useSafeArea: true,
+                  isScrollControlled: true,
                   context: context,
                   builder: (ctx) => NewExpanse(_addExpanse)
               );
