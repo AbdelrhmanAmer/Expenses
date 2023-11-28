@@ -41,7 +41,7 @@ class _ExpansesState extends State<Expanses> {
     if(_expanses.isNotEmpty){
       mainContent = ExpansesList(
           expanses: _expanses,
-          onRemoveExpanse: _removeExpanse
+          onRemoveExpanse: _removeExpanse,
       );
     }
 
